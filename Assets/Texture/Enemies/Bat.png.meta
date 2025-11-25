@@ -204,7 +204,7 @@ TextureImporter:
       name: Bat_2
       rect:
         serializedVersion: 2
-        x: 250
+        x: 253
         y: 283
         width: 84
         height: 45
@@ -267,7 +267,7 @@ TextureImporter:
       name: Bat_5
       rect:
         serializedVersion: 2
-        x: 129
+        x: 130
         y: 194
         width: 84
         height: 45
@@ -351,8 +351,8 @@ TextureImporter:
       name: Bat_9
       rect:
         serializedVersion: 2
-        x: 130
-        y: 37
+        x: 136
+        y: 35
         width: 77
         height: 92
       alignment: 9
@@ -410,10 +410,31 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Bat_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 269
+        width: 463
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca58761023e4bc644a90accd9f96526e
+      internalID: 366743443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 12b7f56f4190bac449854409e0d5d175
     internalID: 0
     vertices: []
     indices: 
@@ -425,6 +446,7 @@ TextureImporter:
       Bat_1: 21300002
       Bat_10: 21300020
       Bat_11: 21300022
+      Bat_12: 366743443
       Bat_2: 21300004
       Bat_3: 21300006
       Bat_4: 21300008
