@@ -8,10 +8,6 @@ using Platformer.Core;
 
 namespace Platformer.Mechanics
 {
-    /// <summary>
-    /// This is the main class used to implement control of the player.
-    /// It is a superset of the AnimationController class, but is inlined to allow for any kind of customisation.
-    /// </summary>
     public class PlayerController : KinematicObject
     {
         public AudioClip jumpAudio;
@@ -20,20 +16,13 @@ namespace Platformer.Mechanics
 
         private bool facingRight = true;
 
-        /// <summary>
-        /// Max horizontal speed of the player.
-        /// </summary>
         public float maxSpeed = 7;
-        /// <summary>
-        /// Initial jump velocity at the start of a jump.
-        /// </summary>
         public float jumpTakeOffSpeed = 7;
 
         public JumpState jumpState = JumpState.Grounded;
         private bool stopJump;
-        /*internal new*/
+
         public Collider2D collider2d;
-        /*internal new*/
         public AudioSource audioSource;
         public Health health;
         public bool controlEnabled = true;
@@ -45,6 +34,10 @@ namespace Platformer.Mechanics
         readonly PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
         public Bounds Bounds => collider2d.bounds;
+
+        
+        private int jumpCount = 0;
+        public int maxJumpCount = 2;
 
         void Awake()
         {
@@ -60,8 +53,18 @@ namespace Platformer.Mechanics
             if (controlEnabled)
             {
                 move.x = Input.GetAxis("Horizontal");
-                if (jumpState == JumpState.Grounded && Input.GetButtonDown("Jump"))
-                    jumpState = JumpState.PrepareToJump;
+
+                if (Input.GetButtonDown("Jump"))
+                {
+                    if (jumpState == JumpState.Grounded)
+                    {
+                        jumpState = JumpState.PrepareToJump;
+                    }
+                    else if (jumpState == JumpState.InFlight && jumpCount < maxJumpCount)
+                    {
+                        jumpState = JumpState.PrepareToJump;
+                    }
+                }
                 else if (Input.GetButtonUp("Jump"))
                 {
                     stopJump = true;
@@ -72,6 +75,7 @@ namespace Platformer.Mechanics
             {
                 move.x = 0;
             }
+
             UpdateJumpState();
             base.Update();
         }
@@ -98,6 +102,7 @@ namespace Platformer.Mechanics
                     {
                         Schedule<PlayerLanded>().player = this;
                         jumpState = JumpState.Landed;
+                        jumpCount = 0; // reset khi chạm đất
                     }
                     break;
                 case JumpState.Landed:
@@ -108,10 +113,11 @@ namespace Platformer.Mechanics
 
         protected override void ComputeVelocity()
         {
-            if (jump && IsGrounded)
+            if (jump)
             {
                 velocity.y = jumpTakeOffSpeed * model.jumpModifier;
                 jump = false;
+                jumpCount++; // tăng số lần nhảy
             }
             else if (stopJump)
             {
@@ -141,10 +147,10 @@ namespace Platformer.Mechanics
             InFlight,
             Landed
         }
+
         public bool FaceRight()
         {
             return facingRight;
         }
     }
-
 }
