@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 6850782021924716793}
   - component: {fileID: 7495063837140968578}
   - component: {fileID: 2602325775029399219}
-  - component: {fileID: 4903282265534272714}
   m_Layer: 0
   m_Name: BossBat
   m_TagString: Untagged
@@ -256,18 +255,3 @@ CapsuleCollider2D:
   m_Offset: {x: -0.049018532, y: 0.20277743}
   m_Size: {x: 0.5, y: 0.5049603}
   m_Direction: 0
---- !u!114 &4903282265534272714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4849524815715824859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 565fbc50999104819abb0f2031ff5ac9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minGroundNormalY: 0.65
-  gravityModifier: 1
-  velocity: {x: 0, y: -984.2012}
